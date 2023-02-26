@@ -145,7 +145,7 @@ function requestDoorContent(door) {
           [door].setAttribute("data-open", "true");
         document.getElementsByClassName("calenderDoorWrapper")[
           door
-        ].style = `background-image: url('./img/imageBorderPlusPlus/${dataString}'); background-repeat: no-repeat; background-size: contain; background-position: center;`;
+        ].style = `background-image: url('../img/imageBorderPlusPlus/${dataString}'); background-repeat: no-repeat; background-size: contain; background-position: center;`;
         openDoor(door);
       } else {
         console.log("invalid day");
