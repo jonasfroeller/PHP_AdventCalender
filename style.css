@@ -78,15 +78,63 @@ body::-webkit-scrollbar {
     width: 100vw;
     height: 100vh;
     box-sizing: border-box;
+    justify-content: center;
+    align-content: center;
     display: grid;
-    padding: 2.5vh;
-    gap: 2.5vh;
-    grid-template-rows: calc(25vh - 3.125vh) calc(25vh - 3.125vh) calc(25vh - 3.125vh) calc(25vh - 3.125vh);
-    grid-template-columns: auto auto auto auto auto auto;
+    gap: 1rem;
+    grid-template-rows: repeat(4, calc(25vh - 1rem));
+    grid-template-columns: repeat(6, calc(16.666vw - 1rem));
     background-color: black;
     counter-reset: door;
     position: relative;
     z-index: 0;
+}
+
+@media only screen and (max-width: 1150px) {
+    #calenderDoors {
+        grid-template-rows: repeat(5, calc(20vh - 1rem));
+        grid-template-columns: repeat(5, calc(20vw - 1rem));
+    }
+
+    #calenderDoors>* {
+        width: calc(20vw - 1rem);
+    }
+}
+
+@media only screen and (max-width: 865px) {
+    #calenderDoors {
+        grid-template-rows: repeat(6, calc(16vh - 1rem));
+        grid-template-columns: repeat(4, calc(24vw - 1rem));
+    }
+
+    #calenderDoors>* {
+        width: calc(24vw - 1rem);
+        font-size: 70%;
+    }
+}
+
+@media only screen and (max-width: 520px) {
+    #calenderDoors {
+        grid-template-rows: repeat(8, calc(12vh - 1rem));
+        grid-template-columns: repeat(3, calc(28.8vw - 1rem));
+    }
+
+    #calenderDoors>* {
+        width: calc(28.8vw - 1rem);
+        font-size: 50%;
+    }
+}
+
+@media only screen and (max-width: 300px) {
+    #calenderDoors {
+        grid-template-rows: repeat(12, calc(8vh - 1rem));
+        grid-template-columns: repeat(2, calc(34.56vw - 1rem));
+    }
+
+    #calenderDoors>* {
+        width: calc(34.56vw - 1rem);
+        font-size: 40%;
+    }
 }
 
 .calenderDoorWrapper {

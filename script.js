@@ -69,7 +69,17 @@ function openDoor(shutterIndex) {
       shutterValue = 0;
       clearInterval(shutterAnimation);
     }
-  }, 25);
+  }, 12.5);
+}
+
+function debounce(func, delay) {
+  let timeoutId;
+  return function (...args) {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      func.apply(this, args);
+    }, delay);
+  };
 }
 
 var calenderDoorsElements = document.getElementsByClassName(
@@ -79,7 +89,7 @@ if (calenderDoorsElements) {
   console.info("Elements with class 'calenderDoor' found!");
   var calenderDoors = [...calenderDoorsElements];
   calenderDoors.forEach((calenderDoor) => {
-    calenderDoor.addEventListener("click", function () {
+    /* calenderDoor.addEventListener("click", function () {
       console.info(`Door ${calenderDoors.indexOf(calenderDoor) + 1} clicked`);
       door = calenderDoors.indexOf(calenderDoor);
       if (
@@ -89,7 +99,22 @@ if (calenderDoorsElements) {
       ) {
         requestDoorContent(door);
       }
-    });
+    }); */
+
+    calenderDoor.addEventListener(
+      "click",
+      debounce(function () {
+        console.info(`Door ${calenderDoors.indexOf(calenderDoor) + 1} clicked`);
+        door = calenderDoors.indexOf(calenderDoor);
+        if (
+          document
+            .getElementsByClassName("calenderDoorWrapper")
+            [door].getAttribute("data-open") == "false"
+        ) {
+          requestDoorContent(door);
+        }
+      }, 250)
+    );
   });
 } else {
   console.error("No elements with class 'calenderDoor' found!");
